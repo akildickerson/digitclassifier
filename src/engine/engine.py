@@ -5,7 +5,7 @@ from torch.serialization import validate_cuda_device
 
 
 def train(model, train_loader, val_loader, epochs, learning_rate, device):
-    print(f"-------- Training --------\n")
+    print(f"-------- Training --------")
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
     loss_fn = nn.CrossEntropyLoss()
@@ -59,6 +59,7 @@ def train(model, train_loader, val_loader, epochs, learning_rate, device):
 
 
 def predict(model, test_loader, device):
+    print("\n-------- Test Accuracy --------")
     model.eval()
     correct, total = 0.0, 0.0
 
@@ -70,4 +71,4 @@ def predict(model, test_loader, device):
             correct += (pred == label).sum().item()
             total += label.size(0)
 
-    print("accuracy:", correct / total)
+    print(f"{100*(correct / total):.2f}%")

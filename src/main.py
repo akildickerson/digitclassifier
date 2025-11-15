@@ -108,6 +108,7 @@ def main():
     results = evaluate_batch_configs(DigitClassifier, TRAIN_MNIST, VAL_MNIST, device)
     results.sort(key=lambda x: x[2], reverse=True)
 
+    print("\n-------- batches, workers, and validation accuracies --------")
     for bs, nw, acc in results:
         print(f"batch={bs:3d} workers={nw:2d} -> validation accuracy={acc*100:.2f}%")
 
